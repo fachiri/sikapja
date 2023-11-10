@@ -9,17 +9,17 @@
 	                'hasSubItems' => false,
 	                'link' => route('dashboard.index'),
 	            ],
-	            (object) [
-	                'label' => 'Master',
-	                'icon' => 'bi bi-database-fill',
-	                'hasSubItems' => true,
-	                'subItems' => [
-	                    (object) [
-	                        'label' => 'Pengguna',
-	                        'link' => '#',
-	                    ],
-	                ],
-	            ],
+	            // (object) [
+	            //     'label' => 'Master',
+	            //     'icon' => 'bi bi-database-fill',
+	            //     'hasSubItems' => true,
+	            //     'subItems' => [
+	            //         (object) [
+	            //             'label' => 'Pengguna',
+	            //             'link' => '#',
+	            //         ],
+	            //     ],
+	            // ],
 							(object) [
 	                'label' => 'Kartu',
 	                'icon' => 'bi bi-file-text-fill',
@@ -35,7 +35,7 @@
 	                'label' => 'Pengaturan',
 	                'icon' => 'bi bi-gear-fill',
 	                'hasSubItems' => false,
-	                'link' => '#',
+	                'link' => route('setting.index'),
 	            ],
               (object) [
 	                'label' => 'Keluar',

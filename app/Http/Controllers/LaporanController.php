@@ -15,4 +15,12 @@ class LaporanController extends Controller
 
         return $pdf->stream();
     }
+
+    public function laporan_preview()
+    {
+        $surat = Surat::all();
+        $pdf = Pdf::loadView('export.laporan', compact('surat'));
+
+        return $pdf->stream();
+    }
 }

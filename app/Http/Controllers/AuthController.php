@@ -27,7 +27,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             return redirect()
-                ->intended('dashboard.index')
+                ->route('dashboard.index')
                 ->withSuccess('Selamat datang');
         }
 
@@ -40,7 +40,7 @@ class AuthController extends Controller
     {
         Session::flush();
         Auth::logout();
-        
+
         return redirect()
             ->route('login');
     }

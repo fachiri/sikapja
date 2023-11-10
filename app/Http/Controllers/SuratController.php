@@ -89,23 +89,100 @@ class SuratController extends Controller
         }
     }
 
-    public function show(Surat $surat)
+    public function show($uuid)
     {
-        //
+        $surat = Surat::where('uuid', $uuid)->first();
+        
+        return view('pages.surat.show', compact('surat'));
     }
 
-    public function edit(Surat $surat)
+    public function edit($uuid)
     {
-        //
+        $surat = Surat::where('uuid', $uuid)->first();
+
+        return view('pages.surat.edit', compact('surat'));
     }
 
-    public function update(UpdateSuratRequest $request, Surat $surat)
+    public function update(Request $request, $uuid)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            "no_pendaftar" => "required|numeric|digits:16",
+            "nik" => "required|numeric|digits:16",
+            "nama_pengantar_kerja" => "required|max:36",
+            "nama_ibu" => "required|max:36",
+            "nama_lengkap" => "required|max:36",
+            "tempat_lahir" => "required|max:36",
+            "tanggal_lahir" => "required",
+            "jenis_kelamin" => "required",
+            "status" => "required",
+            "agama" => "required",
+            "tinggi_badan" => "required|numeric|min:10",
+            "berat_badan" => "required|numeric|min:10",
+            "jln" => "required",
+            "rtrw" => "required",
+            "kel" => "required",
+            "kec" => "required",
+            "kab" => "required",
+            "provinsi" => "required",
+            "pos" => "required|numeric",
+            "telp" => "required|numeric|digits_between:10,12",
+            "email" => "required|email",
+            "pendidikan" => "required",
+            "jurusan" => "nullable",
+            "keterampilan" => "nullable",
+            "tahun_lulus" => "required",
+            "sd_tahun" => "nullable",
+            "smp_tahun" => "nullable",
+            "sma_tahun" => "nullable",
+            "jabatan_1" => "nullable",
+            "uraian_tugas_1" => "nullable",
+            "lama_kerja_1" => "nullable",
+            "pemberi_kerja_1" => "nullable",
+            "jabatan_2" => "nullable",
+            "uraian_tugas_2" => "nullable",
+            "lama_kerja_2" => "nullable",
+            "pemberi_kerja_2" => "nullable",
+            "jabatan_dalam_negeri" => "nullable",
+            "jabatan_luar_negeri" => "nullable",
+            "upah_yang_diinginkan" => "required"
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+
+        try {
+            $data = $request->only(['']);
+            if ($request->has('bahasa_asing')) {
+                $data['bahasa_asing'] = implode(',', $request->bahasa_asing);
+            }
+
+            Surat::where('uuid', $uuid)->update($data);
+
+            return redirect()
+                ->back()
+                ->with('success', 'Data berhasil diupdate!');
+        } catch (\Throwable $th) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['message' => ['Terjadi kesalahan!', $th->getMessage()]]);
+        }
     }
 
-    public function destroy(Surat $surat)
+    public function destroy($uuid)
     {
-        //
+        try {
+            Surat::where('uuid', $uuid)->delete();
+
+            return redirect()
+                ->route('surat.index')
+                ->with('success', 'Data berhasil dihapus!');
+        } catch (\Throwable $th) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['message' => ['Terjadi kesalahan!', $th->getMessage()]]);
+        }
     }
 }

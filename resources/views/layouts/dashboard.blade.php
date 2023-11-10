@@ -51,7 +51,7 @@
 							<p>2023 &copy; {{ config('app.name') }}</p>
 						</div>
 						<div class="float-end">
-							<p>Developed by <a href="#" class="font-bold">JEJAKODE</a></p>
+							<p>Developed by <a href="https://jejakode.com" class="font-bold">JEJAKODE</a></p>
 						</div>
 					</div>
 				</footer>

@@ -53,6 +53,11 @@ class Surat extends Model
         'bahasa_asing'
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
+    }
+
     protected static function boot()
     {
         parent::boot();
