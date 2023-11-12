@@ -63,6 +63,7 @@ class SuratController extends Controller
             "pemberi_kerja_2" => "nullable",
             "jabatan_dalam_negeri" => "nullable",
             "jabatan_luar_negeri" => "nullable",
+            "lama_lulus_pendidikan" => "required",
             "upah_yang_diinginkan" => "required"
         ]);
 
@@ -92,7 +93,7 @@ class SuratController extends Controller
     public function show($uuid)
     {
         $surat = Surat::where('uuid', $uuid)->first();
-        
+
         return view('pages.surat.show', compact('surat'));
     }
 
@@ -142,8 +143,10 @@ class SuratController extends Controller
             "uraian_tugas_2" => "nullable",
             "lama_kerja_2" => "nullable",
             "pemberi_kerja_2" => "nullable",
+            "lama_lulus_pendidikan" => "required",
             "jabatan_dalam_negeri" => "nullable",
             "jabatan_luar_negeri" => "nullable",
+            "lowongan" => "nullable",
             "upah_yang_diinginkan" => "required"
         ]);
 
@@ -152,7 +155,7 @@ class SuratController extends Controller
         }
 
         try {
-            $data = $request->only(['']);
+            $data = $request->all(["no_pendaftar", "nik", "nama_pengantar_kerja", "nama_ibu", "nama_lengkap", "tempat_lahir", "tanggal_lahir", "jenis_kelamin", "status", "agama", "tinggi_badan", "berat_badan", "jln", "rtrw", "kel", "kec", "kab", "provinsi", "pos", "telp", "email", "pendidikan", "jurusan", "keterampilan", "tahun_lulus", "sd_tahun", "smp_tahun", "sma_tahun", "jabatan_1", "uraian_tugas_1", "lama_kerja_1", "pemberi_kerja_1", "jabatan_2", "uraian_tugas_2", "lama_kerja_2", "pemberi_kerja_2", "lama_lulus_pendidikan", "jabatan_dalam_negeri", "jabatan_luar_negeri", "lowongan", "upah_yang_diinginkan",]);
             if ($request->has('bahasa_asing')) {
                 $data['bahasa_asing'] = implode(',', $request->bahasa_asing);
             }

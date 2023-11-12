@@ -12,7 +12,7 @@
 						@csrf
 						<div class="form-group mb-3">
 							<label for="no_pendaftar">Nomor Pendaftar *</label>
-							<input type="text" class="form-control" id="no_pendaftar" name="no_pendaftar" value="{{ old('no_pendaftar') }}">
+							<input type="text" class="form-control" id="no_pendaftar" name="no_pendaftar" maxlength="16" value="{{ old('no_pendaftar') }}">
 							@error('no_pendaftar')
 								<small class="text-danger mt-2">{{ $message }}</small>
 							@enderror
@@ -210,8 +210,15 @@
 						</div>
 						<div class="form-group mb-3">
 							<label for="tahun_lulus">Tahun Lulus *</label>
-							<input type="text" class="form-control" id="tahun_lulus" name="tahun_lulus" value="{{ old('tahun_lulus') }}">
+							<input type="text" class="form-control" id="tahun_lulus" name="tahun_lulus" maxlength="4" value="{{ old('tahun_lulus') }}">
 							@error('tahun_lulus')
+								<small class="text-danger mt-2">{{ $message }}</small>
+							@enderror
+						</div>
+						<div class="form-group mb-3">
+							<label for="lama_lulus_pendidikan">Lama Lulus Pendidikan *</label>
+							<input type="text" class="form-control" id="lama_lulus_pendidikan" name="lama_lulus_pendidikan" value="{{ old('lama_lulus_pendidikan') }}">
+							@error('lama_lulus_pendidikan')
 								<small class="text-danger mt-2">{{ $message }}</small>
 							@enderror
 						</div>
@@ -219,21 +226,21 @@
 							<div class="row mb-3">
 								<div class="col-4">
 									<label for="sd_tahun">SD Tahun</label>
-									<input type="text" class="form-control" id="sd_tahun" name="sd_tahun" value="{{ old('sd_tahun') }}">
+									<input type="text" class="form-control" id="sd_tahun" name="sd_tahun" maxlength="4" value="{{ old('sd_tahun') }}">
 									@error('sd_tahun')
 										<small class="text-danger mt-2">{{ $message }}</small>
 									@enderror
 								</div>
 								<div class="col-4">
 									<label for="smp_tahun">SMP Tahun</label>
-									<input type="text" class="form-control" id="smp_tahun" name="smp_tahun" value="{{ old('smp_tahun') }}">
+									<input type="text" class="form-control" id="smp_tahun" name="smp_tahun" maxlength="4" value="{{ old('smp_tahun') }}">
 									@error('smp_tahun')
 										<small class="text-danger mt-2">{{ $message }}</small>
 									@enderror
 								</div>
 								<div class="col-4">
 									<label for="sma_tahun">SMA Tahun</label>
-									<input type="text" class="form-control" id="sma_tahun" name="sma_tahun" value="{{ old('sma_tahun') }}">
+									<input type="text" class="form-control" id="sma_tahun" name="sma_tahun" maxlength="4" value="{{ old('sma_tahun') }}">
 									@error('sma_tahun')
 										<small class="text-danger mt-2">{{ $message }}</small>
 									@enderror
@@ -310,6 +317,10 @@
 						</table>
 						<hr class="my-3">
 						<h5 class="mb-3">Jabatan yang Diinginkan</h5>
+						<div class="form-group mb-3">
+							<label for="lowongan">Lowongan</label>
+							<input type="text" class="form-control" id="lowongan" name="lowongan" value="{{ old('lowongan') }}">
+						</div>
 						<div class="form-group mb-3">
 							<label for="jabatan_dalam_negeri">Dalam Negeri</label>
 							<input type="text" class="form-control" id="jabatan_dalam_negeri" name="jabatan_dalam_negeri" value="{{ old('jabatan_dalam_negeri') }}">

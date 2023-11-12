@@ -50,7 +50,9 @@ class Surat extends Model
         'jabatan_dalam_negeri',
         'jabatan_luar_negeri',
         'upah_yang_diinginkan',
-        'bahasa_asing'
+        'bahasa_asing',
+        'lama_lulus_pendidikan',
+        'lowongan'
     ];
 
     public function getRouteKeyName(): string

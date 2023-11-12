@@ -39,6 +39,7 @@ return new class extends Migration
             $table->integer('sd_tahun')->nullable();
             $table->integer('smp_tahun')->nullable();
             $table->integer('sma_tahun')->nullable();
+            $table->integer('lama_lulus_pendidikan')->nullable();
             $table->string('jabatan_1')->nullable();
             $table->string('uraian_tugas_1')->nullable();
             $table->integer('lama_kerja_1')->nullable();
@@ -47,6 +48,7 @@ return new class extends Migration
             $table->string('uraian_tugas_2')->nullable();
             $table->integer('lama_kerja_2')->nullable();
             $table->string('pemberi_kerja_2')->nullable();
+            $table->string('lowongan')->nullable();
             $table->string('jabatan_dalam_negeri')->nullable();
             $table->string('jabatan_luar_negeri')->nullable();
             $table->string('upah_yang_diinginkan');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class LaporanController extends Controller
 {
@@ -16,9 +17,19 @@ class LaporanController extends Controller
         return $pdf->stream();
     }
 
-    public function laporan_preview()
+    public function laporan_preview(Request $request)
     {
-        $surat = Surat::all();
+        $surat = Surat::whereYear('created_at', $request->year)
+            ->whereMonth('created_at', $request->month)
+            ->get();
+
+        foreach ($surat as $s) {
+            $tanggal_lahir = Carbon::parse($s->tanggal_lahir);
+            $umur = $tanggal_lahir->diffInYears(Carbon::now());
+
+            $s->umur = $umur;
+        }
+
         $pdf = Pdf::loadView('export.laporan', compact('surat'));
 
         return $pdf->stream();

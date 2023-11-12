@@ -1,3 +1,24 @@
+@php
+	$bulanIndonesia = [
+	    '01' => 'Januari',
+	    '02' => 'Februari',
+	    '03' => 'Maret',
+	    '04' => 'April',
+	    '05' => 'Mei',
+	    '06' => 'Juni',
+	    '07' => 'Juli',
+	    '08' => 'Agustus',
+	    '09' => 'September',
+	    '10' => 'Oktober',
+	    '11' => 'November',
+	    '12' => 'Desember',
+	];
+
+	$bulan = request('month');
+	$tahun = request('year');
+
+	$namaBulan = $bulanIndonesia[$bulan];
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +33,8 @@
 				font-size: 11px;
 			}
 
-			.table th, .table td {
+			.table th,
+			.table td {
 				border: 1px solid black;
 				text-align: center;
 			}
@@ -26,7 +48,7 @@
 	<body>
 		<div class="text-center">
 			<h5>REGISTRASI KARTU PENCARI KERJA AK1</h5>
-			<h5></h5>
+			<h5 class="text-uppercase mb-3">BULAN {{ $namaBulan }} {{ request('year') }}</h5>
 		</div>
 		<table class="table">
 			<tr>
@@ -48,7 +70,7 @@
 			</tr>
 			<tr>
 				<th>DESA / KELURAHAN</th>
-				<th>KECAMATAN</th>	
+				<th>KECAMATAN</th>
 			</tr>
 			@foreach ($surat as $item)
 				<tr>
@@ -58,16 +80,16 @@
 					<td>{{ $item->nik }}</td>
 					<td>{{ $item->nama_lengkap }}</td>
 					<td>{{ $item->tempat_lahir }}, {{ $item->tanggal_lahir }}</td>
-					<td></td>
+					<td>{{ $item->umur }}</td>
 					<td>{{ $item->jenis_kelamin }}</td>
 					<td>{{ $item->status }}</td>
 					<td>{{ $item->kel }}</td>
 					<td>{{ $item->kec }}</td>
 					<td>{{ $item->pendidikan }}</td>
 					<td>{{ $item->tahun_lulus }}</td>
-					<td></td>
+					<td>{{ $item->lama_lulus_pendidikan }}</td>
 					<td>{{ $item->telp }}</td>
-					<td></td>
+					<td>{{ $item->lowongan }}</td>
 				</tr>
 			@endforeach
 		</table>
