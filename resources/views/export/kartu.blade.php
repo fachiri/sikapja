@@ -247,7 +247,7 @@
 		<table class="w-100">
 			<tr>
 				<td class="align-top" style="width: 50%;">
-					<div style="padding-right: 25px;">
+					<div style="padding-left: 10px; padding-right: 15px;">
 						<table class="w-100 table-bordered">
 							<tr>
 								<th>LAPORAN</th>
