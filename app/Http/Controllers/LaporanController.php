@@ -21,6 +21,7 @@ class LaporanController extends Controller
     {
         $surat = Surat::whereYear('tanggal_pendaftaran', $request->year)
             ->whereMonth('tanggal_pendaftaran', $request->month)
+            ->orderBy('tanggal_pendaftaran', 'asc')
             ->get();
 
         foreach ($surat as $s) {
