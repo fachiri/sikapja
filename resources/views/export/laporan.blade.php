@@ -75,7 +75,7 @@
 			@foreach ($surat as $item)
 				<tr>
 					<td>{{ $loop->iteration }}</td>
-					<td>{{ $item->created_at }}</td>
+					<td>{{ $item->tanggal_pendaftaran }}</td>
 					<td>{{ $item->no_pendaftar }}</td>
 					<td>{{ $item->nik }}</td>
 					<td>{{ $item->nama_lengkap }}</td>

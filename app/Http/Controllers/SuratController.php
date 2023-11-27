@@ -25,6 +25,7 @@ class SuratController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            "tanggal_pendaftaran" => "required|date",
             "no_pendaftar" => "required|numeric|digits:16",
             "nik" => "required|numeric|digits:16",
             "nama_pengantar_kerja" => "required|max:36",
@@ -35,17 +36,17 @@ class SuratController extends Controller
             "jenis_kelamin" => "required",
             "status" => "required",
             "agama" => "required",
-            "tinggi_badan" => "required|numeric|min:10",
-            "berat_badan" => "required|numeric|min:10",
-            "jln" => "required",
-            "rtrw" => "required",
+            "tinggi_badan" => "nullable|numeric|min:10",
+            "berat_badan" => "nullable|numeric|min:10",
+            "jln" => "nullable",
+            "rtrw" => "nullable",
             "kel" => "required",
             "kec" => "required",
             "kab" => "required",
             "provinsi" => "required",
-            "pos" => "required|numeric",
+            "pos" => "nullable|numeric",
             "telp" => "required|numeric|digits_between:10,12",
-            "email" => "required|email",
+            "email" => "nullable|email",
             "pendidikan" => "required",
             "jurusan" => "nullable",
             "keterampilan" => "nullable",
@@ -107,6 +108,7 @@ class SuratController extends Controller
     public function update(Request $request, $uuid)
     {
         $validator = Validator::make($request->all(), [
+            "tanggal_pendaftaran" => "required|date",
             "no_pendaftar" => "required|numeric|digits:16",
             "nik" => "required|numeric|digits:16",
             "nama_pengantar_kerja" => "required|max:36",
@@ -117,17 +119,17 @@ class SuratController extends Controller
             "jenis_kelamin" => "required",
             "status" => "required",
             "agama" => "required",
-            "tinggi_badan" => "required|numeric|min:10",
-            "berat_badan" => "required|numeric|min:10",
-            "jln" => "required",
-            "rtrw" => "required",
+            "tinggi_badan" => "nullable|numeric|min:10",
+            "berat_badan" => "nullable|numeric|min:10",
+            "jln" => "nullable",
+            "rtrw" => "nullable",
             "kel" => "required",
             "kec" => "required",
             "kab" => "required",
             "provinsi" => "required",
-            "pos" => "required|numeric",
+            "pos" => "nullable|numeric",
             "telp" => "required|numeric|digits_between:10,12",
-            "email" => "required|email",
+            "email" => "nullable|email",
             "pendidikan" => "required",
             "jurusan" => "nullable",
             "keterampilan" => "nullable",
@@ -155,7 +157,7 @@ class SuratController extends Controller
         }
 
         try {
-            $data = $request->all(["no_pendaftar", "nik", "nama_pengantar_kerja", "nama_ibu", "nama_lengkap", "tempat_lahir", "tanggal_lahir", "jenis_kelamin", "status", "agama", "tinggi_badan", "berat_badan", "jln", "rtrw", "kel", "kec", "kab", "provinsi", "pos", "telp", "email", "pendidikan", "jurusan", "keterampilan", "tahun_lulus", "sd_tahun", "smp_tahun", "sma_tahun", "jabatan_1", "uraian_tugas_1", "lama_kerja_1", "pemberi_kerja_1", "jabatan_2", "uraian_tugas_2", "lama_kerja_2", "pemberi_kerja_2", "lama_lulus_pendidikan", "jabatan_dalam_negeri", "jabatan_luar_negeri", "lowongan", "upah_yang_diinginkan",]);
+            $data = $request->all(["tanggal_pendaftaran", "no_pendaftar", "nik", "nama_pengantar_kerja", "nama_ibu", "nama_lengkap", "tempat_lahir", "tanggal_lahir", "jenis_kelamin", "status", "agama", "tinggi_badan", "berat_badan", "jln", "rtrw", "kel", "kec", "kab", "provinsi", "pos", "telp", "email", "pendidikan", "jurusan", "keterampilan", "tahun_lulus", "sd_tahun", "smp_tahun", "sma_tahun", "jabatan_1", "uraian_tugas_1", "lama_kerja_1", "pemberi_kerja_1", "jabatan_2", "uraian_tugas_2", "lama_kerja_2", "pemberi_kerja_2", "lama_lulus_pendidikan", "jabatan_dalam_negeri", "jabatan_luar_negeri", "lowongan", "upah_yang_diinginkan",]);
             if ($request->has('bahasa_asing')) {
                 $data['bahasa_asing'] = implode(',', $request->bahasa_asing);
             }

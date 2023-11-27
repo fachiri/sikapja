@@ -147,8 +147,8 @@
 							<td class="border text-center">{{ substr($bulan, 0, 1) }}</td>
 							<td class="border text-center">{{ substr($bulan, 1, 1) }}</td>
 							<!-- Tahun -->
-							<td class="border text-center">{{ substr($tahun, 0, 1) }}</td>
-							<td class="border text-center">{{ substr($tahun, 1, 1) }}</td>
+							<td class="border text-center">{{ substr($tahun, 2, 1) }}</td>
+							<td class="border text-center">{{ substr($tahun, 3, 1) }}</td>
 						</tr>
 						<tr>
 							<td>JENIS KELAMIN</td>
@@ -235,7 +235,7 @@
 							<td>BERLAKU S.D</td>
 							<td class="pe-2">:</td>
 							<td colspan="17" class="text-uppercase fw-medium text-justify" style="border-bottom: 1px solid black;">
-								{{ \Carbon\Carbon::parse($surat->created_at)->addYears(2)->isoFormat('D MMMM YYYY', 'Do MMMM YYYY') }}
+								{{ \Carbon\Carbon::parse($surat->tanggal_pendaftaran)->addYears(2)->isoFormat('D MMMM YYYY', 'Do MMMM YYYY') }}
 							</td>
 							<td></td>
 						</tr>
@@ -301,44 +301,44 @@
 							<tr>
 								<td>1</td>
 								<td class="text-left">SD/SEDERAJAT</td>
-								<td></td>
-								<td></td>
+								<td>{{ $surat->pendidikan == 'SD' ? $surat->jurusan : '' }}</td>
+								<td>{{ $surat->sd_tahun }}</td>
 							</tr>
 							<tr>
 								<td>2</td>
 								<td class="text-left">SMPT/SEDERAJAT</td>
-								<td></td>
-								<td></td>
+								<td>{{ $surat->pendidikan == 'SMP' ? $surat->jurusan : '' }}</td>
+								<td>{{ $surat->smp_tahun }}</td>
 							</tr>
 							<tr>
 								<td>3</td>
 								<td class="text-left">SMTA/SMK/SEDERAJAT</td>
-								<td></td>
-								<td></td>
+								<td>{{ $surat->pendidikan == 'SMA' ? $surat->jurusan : '' }}</td>
+								<td>{{ $surat->sma_tahun }}</td>
 							</tr>
 							<tr>
 								<td>4</td>
 								<td class="text-left">D.I/AKTA I/D.II</td>
-								<td></td>
-								<td></td>
+								<td>{{ $surat->pendidikan == 'D1' ? $surat->jurusan : '' }}</td>
+								<td>{{ $surat->pendidikan == 'D1' ? $surat->tahun_lulus : '' }}</td>
 							</tr>
 							<tr>
 								<td>5</td>
 								<td class="text-left">AKTA III/D.III</td>
-								<td></td>
-								<td></td>
+								<td>{{ $surat->pendidikan == 'D3' ? $surat->jurusan : '' }}</td>
+								<td>{{ $surat->pendidikan == 'D3' ? $surat->tahun_lulus : '' }}</td>
 							</tr>
 							<tr>
 								<td>6</td>
 								<td class="text-left">SARJANA/S.1/AKTA IV/D.IV</td>
-								<td></td>
-								<td></td>
+								<td>{{ $surat->pendidikan == 'S1' ? $surat->jurusan : '' }}</td>
+								<td>{{ $surat->pendidikan == 'S1' ? $surat->tahun_lulus : '' }}</td>
 							</tr>
 							<tr>
 								<td>7</td>
 								<td class="text-left">PASCA SARJANA/AKTA V</td>
-								<td></td>
-								<td></td>
+								<td>{{ $surat->pendidikan == 'S2' ? $surat->jurusan : '' }}</td>
+								<td>{{ $surat->pendidikan == 'S2' ? $surat->tahun_lulus : '' }}</td>
 							</tr>
 						</table>
 						<div>KETERAMPILAN / PENGALAMAN KERJA</div>
@@ -351,22 +351,16 @@
 							</tr>
 							<tr>
 								<td>1</td>
-								<td></td>
-								<td></td>
-								<td></td>
+								<td>{{ $surat->pemberi_kerja_1 }}</td>
+								<td>{{ $surat->jabatan_1 }}</td>
+								<td>{{ $surat->lama_kerja_1 }}</td>
 							</tr>
 							<tr>
 								<td>2</td>
-								<td></td>
-								<td></td>
-								<td></td>
+								<td>{{ $surat->pemberi_kerja_2 }}</td>
+								<td>{{ $surat->jabatan_2 }}</td>
+								<td>{{ $surat->lama_kerja_2 }}</td>
 							</tr>
-							{{-- <tr>
-								<td>3</td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr> --}}
 						</table>
 					</div>
 					<table style="width: 100%;">

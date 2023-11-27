@@ -11,7 +11,14 @@
 					<form action="{{ route('surat.store') }}" method="POST">
 						@csrf
 						<div class="form-group mb-3">
-							<label for="no_pendaftar">Nomor Pendaftar *</label>
+							<label for="tanggal_pendaftaran">Tanggal Pendaftaran *</label>
+							<input type="date" class="form-control" id="tanggal_pendaftaran" name="tanggal_pendaftaran" value="{{ old('tanggal_pendaftaran') }}">
+							@error('tanggal_pendaftaran')
+								<small class="text-danger mt-2">{{ $message }}</small>
+							@enderror
+						</div>
+						<div class="form-group mb-3">
+							<label for="tanggal_pendaftaran">Nomor Pendaftar *</label>
 							<input type="text" class="form-control" id="no_pendaftar" name="no_pendaftar" maxlength="16" value="{{ old('no_pendaftar') }}">
 							@error('no_pendaftar')
 								<small class="text-danger mt-2">{{ $message }}</small>
@@ -27,7 +34,7 @@
 						<h5 class="mb-3">Keterangan Umum</h5>
 						<div class="form-group mb-3">
 							<label for="nik">Nomor Induk Kependudukan *</label>
-							<input type="text" class="form-control" id="nik" name="nik" value="{{ old('nik') }}">
+							<input type="text" class="form-control" id="nik" name="nik" maxlength="16" value="{{ old('nik') }}">
 							@error('nik')
 								<small class="text-danger mt-2">{{ $message }}</small>
 							@enderror
@@ -103,14 +110,14 @@
 						<div class="form-group mb-3">
 							<div class="row">
 								<div class="col-6">
-									<label for="tinggi_badan">Tinggi Badan *</label>
+									<label for="tinggi_badan">Tinggi Badan</label>
 									<input type="number" class="form-control" id="tinggi_badan" name="tinggi_badan" value="{{ old('tinggi_badan') }}">
 									@error('tinggi_badan')
 										<small class="text-danger mt-2">{{ $message }}</small>
 									@enderror
 								</div>
 								<div class="col-6">
-									<label for="berat_badan">Berat Badan *</label>
+									<label for="berat_badan">Berat Badan</label>
 									<input type="number" class="form-control" id="berat_badan" name="berat_badan" value="{{ old('berat_badan') }}">
 									@error('berat_badan')
 										<small class="text-danger mt-2">{{ $message }}</small>
@@ -119,7 +126,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="jln">Jalan *</label>
+							<label for="jln">Jalan</label>
 							<input type="text" class="form-control" id="jln" name="jln" value="{{ old('jln') }}">
 							@error('jln')
 								<small class="text-danger mt-2">{{ $message }}</small>
@@ -128,7 +135,7 @@
 						<div class="form-group">
 							<div class="row mb-3">
 								<div class="col-4">
-									<label for="rtrw">RT/RW *</label>
+									<label for="rtrw">RT/RW</label>
 									<input type="text" class="form-control" id="rtrw" name="rtrw" value="{{ old('rtrw') }}">
 									@error('rtrw')
 										<small class="text-danger mt-2">{{ $message }}</small>
@@ -163,7 +170,7 @@
 									@enderror
 								</div>
 								<div class="col-4">
-									<label for="pos">Kode POS *</label>
+									<label for="pos">Kode POS</label>
 									<input type="text" class="form-control" id="pos" name="pos" value="{{ old('pos') }}">
 									@error('pos')
 										<small class="text-danger mt-2">{{ $message }}</small>
@@ -179,7 +186,7 @@
 							@enderror
 						</div>
 						<div class="form-group mb-3">
-							<label for="email">Email *</label>
+							<label for="email">Email</label>
 							<input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
 							@error('email')
 								<small class="text-danger mt-2">{{ $message }}</small>
@@ -189,7 +196,16 @@
 						<h5 class="mb-3">Pendidikan Formal</h5>
 						<div class="form-group mb-3">
 							<label for="pendidikan">Pendidikan Terakhir *</label>
-							<input type="text" class="form-control" id="pendidikan" name="pendidikan" value="{{ old('pendidikan') }}">
+							<select class="choices form-select" id="pendidikan" name="pendidikan">
+								<option value="">Pilih Pendidikan Terakhir</option>
+								<option value="SD" {{ old('pendidikan') == "SD" ? 'selected' : '' }}>SD/SEDERAJAT</option>
+								<option value="SMP" {{ old('pendidikan') == "SMP" ? 'selected' : '' }}>SMPT/SEDERAJAT</option>
+								<option value="SMA" {{ old('pendidikan') == "SMA" ? 'selected' : '' }}>SMTA/SMK/SEDERAJAT</option>
+								<option value="D1" {{ old('pendidikan') == "D1" ? 'selected' : '' }}>D.I/AKTA I/D.II</option>
+								<option value="D3" {{ old('pendidikan') == "D3" ? 'selected' : '' }}>AKTA III/D.III</option>
+								<option value="S1" {{ old('pendidikan') == "S1" ? 'selected' : '' }}>SARJANA/S.1/AKTA IV/D.IV</option>
+								<option value="S2" {{ old('pendidikan') == "S2" ? 'selected' : '' }}>PASCA SARJANA/AKTA V</option>
+							</select>
 							@error('pendidikan')
 								<small class="text-danger mt-2">{{ $message }}</small>
 							@enderror

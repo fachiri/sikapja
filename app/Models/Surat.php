@@ -11,6 +11,7 @@ class Surat extends Model
     use HasFactory;
 
     protected $fillable = [
+        'tanggal_pendaftaran',
         'no_pendaftar',
         'nik',
         'nama_pengantar_kerja',

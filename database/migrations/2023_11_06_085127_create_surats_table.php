@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('surats', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
+            $table->date('tanggal_pendaftaran');
             $table->string('no_pendaftar', 16);
             $table->string('nik', 16);
             $table->string('nama_pengantar_kerja', 36);
@@ -21,17 +22,17 @@ return new class extends Migration
             $table->string('jenis_kelamin');
             $table->string('status');
             $table->string('agama');
-            $table->integer('tinggi_badan');
-            $table->integer('berat_badan');
-            $table->string('jln');
-            $table->string('rtrw');
+            $table->integer('tinggi_badan')->nullable();
+            $table->integer('berat_badan')->nullable();
+            $table->string('jln')->nullable();
+            $table->string('rtrw')->nullable();
             $table->string('kel');
             $table->string('kec');
             $table->string('kab');
             $table->string('provinsi');
-            $table->integer('pos');
+            $table->integer('pos')->nullable();
             $table->string('telp', 12);
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('pendidikan');
             $table->string('jurusan')->nullable();
             $table->string('keterampilan')->nullable();
@@ -42,11 +43,11 @@ return new class extends Migration
             $table->integer('lama_lulus_pendidikan')->nullable();
             $table->string('jabatan_1')->nullable();
             $table->string('uraian_tugas_1')->nullable();
-            $table->integer('lama_kerja_1')->nullable();
+            $table->string('lama_kerja_1')->nullable();
             $table->string('pemberi_kerja_1')->nullable();
             $table->string('jabatan_2')->nullable();
             $table->string('uraian_tugas_2')->nullable();
-            $table->integer('lama_kerja_2')->nullable();
+            $table->string('lama_kerja_2')->nullable();
             $table->string('pemberi_kerja_2')->nullable();
             $table->string('lowongan')->nullable();
             $table->string('jabatan_dalam_negeri')->nullable();

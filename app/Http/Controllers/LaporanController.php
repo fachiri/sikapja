@@ -19,8 +19,8 @@ class LaporanController extends Controller
 
     public function laporan_preview(Request $request)
     {
-        $surat = Surat::whereYear('created_at', $request->year)
-            ->whereMonth('created_at', $request->month)
+        $surat = Surat::whereYear('tanggal_pendaftaran', $request->year)
+            ->whereMonth('tanggal_pendaftaran', $request->month)
             ->get();
 
         foreach ($surat as $s) {
